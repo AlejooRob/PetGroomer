@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Notificación de Cita - PetGroomer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .email-container {
+            background-color: #ffffff;
+            padding: 20px;
+            margin: 0 auto;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            padding-bottom: 10px;
+        }
+        .header img {
+            max-width: 150px;
+        }
+        .content {
+            margin-top: 20px;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #28a745;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #888888;
+        }
+    </style>
+</head>
+<body>
+<div class="email-container">
+    <div class="header">
+        <h2 th:text="${subject}">Notificación de Cita</h2>
+    </div>
+
+    <div class="content">
+        <p>Hola <span th:text="${cliente.usuario != null} ? ${cliente.usuario.nombre} : 'Cliente'">Cliente</span>,</p>
+
+        <p>Este es un recordatorio de que tienes una cita programada con nosotros.</p>
+
+        <p><strong>Detalles de la Cita:</strong></p>
+        <ul>
+            <li><strong>Fecha:</strong> <span th:text="${cita.fecha}">dd/MM/yyyy HH:mm</span></li>
+            <li><strong>Servicios:</strong> <span th:text="${cita.servicios}"></span></li>
+            <li><strong>Empleado asignado:</strong> <span th:text="${cita.empleado != null && cita.empleado.usuario != null} ? ${cita.empleado.usuario.nombre} : 'Empleado no asignado'"></span></li>
+        </ul>
+
+        <p>Si tienes alguna consulta o necesitas modificar tu cita, por favor no dudes en contactarnos.</p>
+
+        <a href="#" class="button">Ver Más Detalles</a>
+    </div>
+
+    <div class="footer">
+        <p>Gracias por confiar en PetGroomer.</p>
+        <p>© 2024 PetGroomer. Todos los derechos reservados.</p>
+    </div>
+</div>
+</body>
+</html>
